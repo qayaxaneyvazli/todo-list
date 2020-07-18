@@ -1,4 +1,19 @@
 <?php
+// git add .
+// git commit -m "."
+// git push origin master
+require __DIR__ .'/config.php';
 
 
-echo 'working';
+ class Home extends DB {
+
+
+
+
+
+
+
+ }
+$db=new DB;
+ $db->connect();
+
