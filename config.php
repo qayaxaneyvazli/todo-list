@@ -11,7 +11,7 @@ CONST dbname='todolist';
 CONST username='root';
 CONST password='';
 
-public function connect(){
+public static function connect(){
 
     try{
         $dsn= "mysql:host=" . SELF::servername. ";dbname=" . SELF::dbname ."";

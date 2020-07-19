@@ -159,13 +159,10 @@ $db->connect();
                             <ul class="pagination pagination-sm inline">
                                 <li><a href="#">«</a></li>
                                 <li><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">»</a></li>
+
                             </ul>
                         </div>
                     </div>
-
                     <div class="box-body">
                         <ul class="todo-list ui-sortable">
                             <li>
@@ -184,15 +181,15 @@ $db->connect();
                         </ul>
                     </div>
                     <div class="box-footer clearfix no-border">
-                        <button type="button" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Add item</button>
+                        <button type="button" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Tapşırıq əlavə et</button>
                     </div>
                 </div>
             </div>
 
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script type="text/javascript">
+            <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+            <script type="text/javascript">
 
-    </script>
+            </script>
 </body>
 
 </html>
