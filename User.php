@@ -7,7 +7,7 @@ class User extends DB
     public static function create($name, $lastname, $password, $email)
     {
         try {
-            $add = parent::connect()->prepare("INSERT into Uyeler Set name=?, lastname=?,email=?,password=?");
+            $add = parent::connect()->prepare("INSERT into users Set name=?, lastname=?,email=?,password=?");
             $add->execute([$name, $lastname, $email, $password]);
 
             return $add->rowCount() > 0;
@@ -22,7 +22,7 @@ class User extends DB
     {
         try {
 
-            $read = parent::connect()->prepare("SELECT * FROM uyeler WHERE password=? AND email=?");
+            $read = parent::connect()->prepare("SELECT * FROM users WHERE password=? AND email=?");
             $read->execute([$password, $email]);
 
 
@@ -41,7 +41,7 @@ class User extends DB
     {
         try {
 
-            $del = self::connect()->prepare("Delete from uyeler where id=?");
+            $del = self::connect()->prepare("Delete from users where id=?");
             $del->execute([$id]);
 
 
@@ -55,7 +55,7 @@ class User extends DB
     {
         try {
 
-            $update = SELF::connect()->prepare("Update uyeler Set name=?, lastname=?, password=?, email=?, id=?");
+            $update = SELF::connect()->prepare("Update users Set name=?, lastname=?, password=?, email=?, id=?");
             $update->execute([$name, $lastname, $password, $email, $id]);
         } catch (PDOException $e) {
             echo "Update error:" . $e->getmessage();
@@ -65,7 +65,7 @@ class User extends DB
     public function getAllUsers()
     {
 
-        $get = $this->Connect()->query("SELECT * FROM uyeler");
+        $get = $this->Connect()->query("SELECT * FROM users");
 
 
         return $get->fetchAll();
