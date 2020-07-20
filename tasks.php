@@ -9,15 +9,14 @@ class Tasks extends DB{
     {
         
         try {
-            $add = parent::connect()->prepare("INSERT into Tasks Set taskcontent=?, createdby=?,deadlinetime=?");
-            $add->execute([$task, $createdby,'CURRENT_TIMESTAMP', $deadlinetime, 'CURRENT_TIMESTAMP', $taskstatus]);
+            $add = parent::connect()->prepare("INSERT into Tasks Set taskcontent=?, createdby=?, created_time=?, deadlinetime=?, end_time=?");
+            $add->execute([$task, $createdby,'CURRENT_TIMESTAMP', $deadlinetime, 'CURRENT_TIMESTAMP']);
 
             return $add->rowCount() > 0;
         } catch (PDOException $e) {
             die("Xeta: " . $e->getmessage());
         }
     }
-
     public static function readTask()
     {
         try {
