@@ -1,6 +1,6 @@
 <?php
+require 'system/init.php'; // birinci init require olmalidi. yaddan cixamsin
 require 'tasks.php';
-require 'system/init.php';
 if(post('submit')){
 
     $taskname=post('taskname');

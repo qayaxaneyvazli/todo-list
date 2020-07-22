@@ -8,8 +8,7 @@
     if ($check) {
 
         $_SESSION['user'] = $check['user_name'];
-        header('Location:index.php');
-
+        redirect('index.php');
          
     } else {
         header('Location:login.php');

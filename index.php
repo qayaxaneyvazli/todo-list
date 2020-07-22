@@ -19,6 +19,7 @@ if (post('end')) {
 
 
 $read = Tasks::readTask();
+global $read;
 
 
 ?>

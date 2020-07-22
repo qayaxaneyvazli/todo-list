@@ -12,6 +12,6 @@ date_default_timezone_set('Asia/Baku');
 define('BASE_URL', 'http://localhost/todo-list/');
 
 
-require __DIR__ . '/config.php';
+require __DIR__ . '/db.php';
 
 require 'helpers.php';

@@ -80,4 +80,18 @@ class Tasks extends DB
             die("Update error:" . $e->getmessage());
         }
     }
+    public static function readSpecificTask($id)
+    {
+        try {
+
+            $read = parent::connect()->query("SELECT * FROM tasks where task_id='$id'");
+             
+
+
+            return $read->fetchAll();
+        } catch (PDOException $e) {
+
+            echo "Xeta" . $e->getmessage();
+        }
+    }
 }
