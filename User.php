@@ -1,5 +1,4 @@
 <?php
- require 'system/config.php';
 
  class User extends DB
  {
