@@ -1,22 +1,27 @@
-<?php
+<?php require 'system/init.php';
+
+// her esas sehifede bir defe init php ni include etmeyin besdi basda fso
+// basqalarinin icinde neyise cagirma
+// iki defe cagirilir.ondada icindeki kodlar iki defe isliyir .
+// meselen error verirki session artiq start olub
+
 require 'tasks.php';
-require 'system/init.php';
-if(post('submit')){
 
-    $taskname=post('taskname');
-    $taskdate=post('taskdeadline');
-    $createdby=$_SESSION['user'];
-    $taskstatus='Gözləmədə';
- 
-    $db=Tasks::createTask($taskname,$createdby,$taskdate,$taskstatus);
-    if($db){
+if (!get('id')) {
+    redirect("index.php");
+} else {
+    if (post('update')) {
+        $ids = get('id');
+        $taskname = post('taskname');
+        $taskdate = post('taskdeadline');
 
-        header('Location:index.php');
+
+        if (Tasks::updateTask($taskname, $taskdate, $ids)) {
+            redirect("index.php");
+        }
+        die('yenilenmedi!');
     }
-    
-
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,11 +31,12 @@ if(post('submit')){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <title>Tapşırıq əlavə et</title>
+    <title>Tapşırığa düzəliş et</title>
 </head>
+
 <body>
-    <form action=""  method="post" class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin">
-        <h2 class="w3-center">Yeni tapşırıq əlavə et</h2>
+    <form action="" method="post" class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin">
+        <h2 class="w3-center">Tapşırığa düzəliş et</h2>
 
         <div class="w3-row w3-section">
 
@@ -49,8 +55,9 @@ if(post('submit')){
             </div>
         </div>
 
-        <input type="hidden" name="submit" value="1">
-        <button type="submit" class="w3-button w3-block w3-section w3-blue w3-ripple w3-padding">Əlavə et</button>
- </form>
+        <input type="hidden" name="update" value="1">
+        <button type="submit" class="w3-button w3-block w3-section w3-blue w3-ripple w3-padding">Düzəliş et</button>
+    </form>
 </body>
+
 </html>

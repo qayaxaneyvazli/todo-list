@@ -1,16 +1,15 @@
 <?php
 
-require 'config.php';
 
-class Tasks extends DB{
+class Tasks extends DB
+{
 
-    
-    public static function createTask($task, $createdby, $deadlinetime,$taskstatus)
+    public static function createTask($taskname, $createdby, $taskdate, $taskstatus)
     {
-        
+
         try {
-            $add = parent::connect()->prepare("INSERT into Tasks Set taskcontent=?, createdby=?, created_time=?, deadlinetime=?, end_time=?");
-            $add->execute([$task, $createdby,'CURRENT_TIMESTAMP', $deadlinetime, 'CURRENT_TIMESTAMP']);
+            $add = parent::connect()->prepare("INSERT into Tasks Set task_content=?, created_by=?, created_time=?, deadline_time=?, end_time=?, task_status=?");
+            $add->execute([$taskname, $createdby,  NULL, $taskdate, NULL, $taskstatus]);
 
             return $add->rowCount() > 0;
         } catch (PDOException $e) {
@@ -25,15 +24,14 @@ class Tasks extends DB{
             $read->execute();
 
 
-           return $read->fetchAll();
-
+            return $read->fetchAll();
         } catch (PDOException $e) {
 
             echo "Xeta" . $e->getmessage();
         }
     }
 
-    public function deleteTask($id)
+    public static function deleteTask($id)
     {
         try {
 
@@ -47,20 +45,39 @@ class Tasks extends DB{
         }
     }
 
-    public function update($task, $updatedby, $deadlinetime, $taskstatus,$id)
+    public static function updateStatus($date = null, $taskstatus = null, $id = null, $taskname = null, $taskdate = null, $ids = null)
     {
+
         try {
 
-            $update = SELF::connect()->prepare("Update Tasks Set  taskcontent=?, createdby=?, deadlinetime=? where id=?");
-            $update->execute([$task, $updatedby,'CURRENT_TIMESTAMP', $deadlinetime, 'CURRENT_TIMESTAMP', $taskstatus, $id]);
+
+            $update = SELF::connect()->prepare("Update Tasks Set end_time=?, task_status=? where task_id=?");
+            $update->execute([$date, $taskstatus, $id]);
+            // burda da etmemisem ama isleyir axi
+            // a kisi ozunnen amerika kesf eleme :d
+            // hecne return etmiyende null qayidir funksiyadan oda false kimi olur if icine girmez
         } catch (PDOException $e) {
             echo "Update error:" . $e->getmessage();
         }
     }
+
+
+    public static function updateTask($taskname = null, $taskdate = null, $ids = null)
+    {
+
+        try {
+
+            // bu SELF teze temadi?
+
+            $update = parent::connect()->prepare("Update Tasks Set task_content=?, deadline_time=? where task_id=?");
+            $update->execute([$taskname, $taskdate, $ids]);
+            return $update->rowCount() > 0;
+            // sen mene burdan returnm etdiyin deyeri goster?
+
+
+        } catch (PDOException $e) {
+
+            die("Update error:" . $e->getmessage());
+        }
+    }
 }
-
-    
-
-
-
-?>

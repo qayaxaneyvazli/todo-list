@@ -1,9 +1,6 @@
 <?php
-session_start();
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 
+// ay brat config icinde DB classin ne gezir? bunu kim tupurub bura asjfuhefuigw
 class DB {
 
 CONST servername='localhost';
@@ -28,5 +25,3 @@ catch (PDOException $e)
 }
 
 }
-
-?>
